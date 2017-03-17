@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/main_layout_bg_color">
+    <include layout="@layout/view_line_horizontal"/>
+    <TextView
+        android:id="@+id/text_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/short_menu_bottom_m_t"
+        android:paddingLeft="@dimen/short_menu_bottom_m_l"
+        android:paddingRight="@dimen/short_menu_bottom_m_r"
+        android:text="@string/text_shortcut_menu1"
+        android:textColor="#b2b2b2"
+        android:textSize="@dimen/s4"/>
+
+    <TextView
+        android:id="@+id/text_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10px"
+        android:paddingLeft="36px"
+        android:paddingRight="36px"
+        android:text="@string/text_shortcut_menu2"
+        android:textColor="#b2b2b2"
+        android:textSize="@dimen/s4"/>
+
+    <TextView
+        android:id="@+id/text_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px60"
+        android:layout_marginTop="10px"
+        android:paddingLeft="36px"
+        android:paddingRight="36px"
+        android:text="@string/text_shortcut_menu3"
+        android:textColor="#b2b2b2"
+        android:textSize="@dimen/s4"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

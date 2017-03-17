@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/short_menu_header_space_h"
+        android:background="@color/white"/>
+    <include layout="@layout/view_line_horizontal" />
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/short_menu_other_hear_title_h"
+        android:background="@color/main_layout_bg_color"
+        android:gravity="bottom"
+        android:paddingBottom="@dimen/short_menu_other_hear_p_b"
+        android:paddingLeft="@dimen/short_menu_p_l"
+        android:text="@string/select_shortcut_menu_style"
+        android:textColor="@color/text_color_gray"
+        android:textSize="@dimen/H6"/>
+    <include layout="@layout/view_line_horizontal"/>
+    <TextView
+        android:id="@+id/tv_no_more"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/short_menu_other_hear_no_more_h"
+        android:layout_centerInParent="true"
+        android:text="@string/shortcut_no_more"
+        android:visibility="gone"
+        android:gravity="center"
+        android:background="@color/white"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/s1"/>
+    <View
+        android:id="@+id/v_bottom_split"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/short_menu_header_space_h"
+        android:background="@color/white"/>
+</LinearLayout>

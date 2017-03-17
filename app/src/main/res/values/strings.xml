@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ShortcutMenu</string>
+
+    <string name="short_menu_finish">完成</string>
+    <string name="short_menu_btn_modify">编辑</string>
+
+    <string name="text_shortcut_menu1">• 快捷菜单设置可以帮助快速切换到所需页面</string>
+    <string name="text_shortcut_menu2">• 拖动快捷菜单快可以调整位置</string>
+    <string name="text_shortcut_menu3">• 用户也可以根据自己需求选择点击对应位置替换所需菜单</string>
+    <string name="select_shortcut_menu_style">选取快捷方式</string>
+    <string name="shortcut_no_more">没有可选取的快捷方式</string>
+    <string name="cannotModify">系统默认菜单不能修改</string>
 </resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="is_scale_tag" type="id"></item>
+    <item name="is_scale_fontsize_tag" type="id"></item>
+
+    <item type="id" name="short_menu_bottom"/>
+</resources>
