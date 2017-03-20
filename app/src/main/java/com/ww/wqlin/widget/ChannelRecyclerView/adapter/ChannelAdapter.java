@@ -126,10 +126,12 @@ public final class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.View
         moveInfo.setFromY(itemView.getTop());
         item.setMoveInfo(moveInfo);
         setStartMoveAnimTime();
+        rv.setNestedScrollingEnabled(false);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (item != null) {
+                    rv.setNestedScrollingEnabled(true);
                     item.setMoveInfo(null);
                 }
             }
@@ -265,6 +267,7 @@ public final class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.View
     private void onBindMyViewHolder(final MyViewHolder myHolder, int position) {
         ShortcutMenuBean shortcutMenuBean=mMyChannelItems.get(position - COUNT_PRE_MY_HEADER);
         myHolder.textView.setText(shortcutMenuBean.getMenuName());
+//        myHolder.img.setImageResource(shortcutMenuBean.getIconResId());
         BitmapUtils.getInstance(context).loadSampleImage(shortcutMenuBean.getEdit_icon(), myHolder.img,shortcutMenuBean.getIconResId());
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -309,6 +312,7 @@ public final class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.View
     private void onBindOtherViewHolder(final OtherViewHolder otherHolder, int position) {
         ShortcutMenuBean shortcutMenuBean=mOtherChannelItems.get(position - mMyChannelItems.size() - COUNT_PRE_OTHER_HEADER);
         otherHolder.textView.setText(shortcutMenuBean.getMenuName());
+//        otherHolder.img.setImageResource(shortcutMenuBean.getIconResId());
         BitmapUtils.getInstance(context).loadSampleImage(shortcutMenuBean.getEdit_icon(), otherHolder.img,shortcutMenuBean.getIconResId());
         otherHolder.itemView.setOnLongClickListener(null);
         otherHolder.itemView.setOnClickListener(new View.OnClickListener() {

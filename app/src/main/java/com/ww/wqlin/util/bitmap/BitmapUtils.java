@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.os.SystemClock;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.widget.ImageView;
 
@@ -40,7 +42,22 @@ public class BitmapUtils {
         return mBitmapUtils;
     }
 
+    private boolean isLoad(ImageView iv, String url) {
+        Object tag = iv.getTag();
+        if (tag==null || TextUtils.isEmpty(url) ||!url.equals(tag)) {
+            if (TextUtils.isEmpty(url) || url.startsWith("null")) {
+                iv.setTag(null);
+            } else {
+                iv.setTag(url);
+            }
+            return true;
+        }
+        return false;
+    }
     public String resizeUrl(ImageView img, String url) {
+        if (TextUtils.isEmpty(url)) {
+            return "null"+SystemClock.currentThreadTimeMillis();
+        }
         String type = "large";
         if (img.getLayoutParams() != null) {
             int width = img.getLayoutParams().width;
@@ -60,10 +77,8 @@ public class BitmapUtils {
     }
 
     public void loadSampleImage(String url, ImageView pic) {
-        Object tag = pic.getTag();
         url = resizeUrl(pic, url);
-        if (tag == null || !url.equals(tag)) {
-            pic.setTag(url);
+        if (isLoad(pic,url)) {
             ImageLoader.getInstance().displayImage(url, pic, BitmapOptions.getSampleOpt());
         }
     }
@@ -72,20 +87,16 @@ public class BitmapUtils {
      * ListView GridView RecyclerView时使用
      */
     public void loadSampleListImage(String url, ImageView pic) {
-        Object tag = pic.getTag();
         url = resizeUrl(pic, url);
-        if (tag == null || !url.equals(tag)) {
-            pic.setTag(url);
+        if (isLoad(pic,url)) {
             ImageLoader.getInstance().displayImage(url, pic, BitmapOptions.getRecyclerSampleOpt());
         }
     }
 
     public void loadSampleImage(String url, ImageView pic, int defaultImg) {
-        Object tag = pic.getTag();
         url = resizeUrl(pic, url);
-        if (tag == null || !url.equals(tag)) {
-            pic.setTag(url);
-            ImageLoader.getInstance().displayImage(url, pic, BitmapOptions.getSampleOpt(defaultImg));
+        if (isLoad(pic,url)) {
+            ImageLoader.getInstance().displayImage(url, pic,getSmapleImageLoaderListener(defaultImg));
         }
     }
     public void loadCircleImage(String url, ImageView pic) {
@@ -93,10 +104,8 @@ public class BitmapUtils {
     }
     public void loadCircleImage(String url,int defaultImageRes, ImageView pic) {
 //        loadCircleImage(url, pic, R.drawable.image_default, 120);
-        Object tag = pic.getTag();
         url = resizeUrl(pic, url);
-        if (tag == null || !url.equals(tag)) {
-            pic.setTag(url);
+        if (isLoad(pic,url)) {
             ImageLoader.getInstance().displayImage(url, pic, BitmapOptions.getRCircleOpt(0),getCircleImageLoaderListener(defaultImageRes));
         }
 
@@ -165,10 +174,8 @@ public class BitmapUtils {
      * @param borderWidth 不需要缩放
      */
     public void loadRoundBorderImage(String url, ImageView pic,int defaultImg, int radius, int borderColor, int borderWidth) {
-        Object tag = pic.getTag();
         url = resizeUrl(pic, url);
-        if (tag == null || !url.equals(tag)) {
-            pic.setTag(url);
+        if (isLoad(pic,url)) {
             DisplayImageOptions options = BitmapOptions.getRoundBorderOpt(0, ScreenUtil.getScalePxValue(radius), borderColor, ScreenUtil.getScalePxValue(borderWidth));
             BitmapDisplayer displayer = options.getDisplayer();
             ImageLoader.getInstance().displayImage(url, pic,options,getRounderImageLoaderListener(displayer,defaultImg));
@@ -250,7 +257,9 @@ public class BitmapUtils {
 
         return bitmap;
     }
-
+    private  XImageLoaderListener getSmapleImageLoaderListener(int defaultImageRes) {
+        return XImageLoaderListener.getNewInstance(0,XBitmapOptions.getNewInstance(defaultImageRes));
+    }
     private  XImageLoaderListener getCircleImageLoaderListener(int defaultImageRes) {
         return XImageLoaderListener.getNewInstance(1,XBitmapOptions.getNewInstance(defaultImageRes));
     }

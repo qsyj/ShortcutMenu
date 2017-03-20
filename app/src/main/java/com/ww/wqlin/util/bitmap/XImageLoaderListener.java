@@ -32,7 +32,7 @@ public class XImageLoaderListener implements ImageLoadingListener {
     }
 
     /**
-     * @param type    1-->圆  2-->圆角
+     * @param type 0-->正常   1-->圆  2-->圆角
      * @param options
      * @return
      */
@@ -89,6 +89,9 @@ public class XImageLoaderListener implements ImageLoadingListener {
                     Drawable drawable = null;
                     if (bmp != null) {
                         switch (type) {
+                            case 0:
+//                                drawable = new BitmapDrawable(bmp);
+                                break;
                             case 1:
                                 drawable = new CircleDrawable(bmp);
                                 break;
